@@ -31,18 +31,40 @@ class Solution
 		// Your code here
 		
 		// O(n).... 
-		long  ans=1;
-		for(long i=1;i<=x;i++)
-		{
-		    if(i*i<=x)
-		    {
-		        ans=i;
-		    }
-		    else{
-		        break;
-		    }
-		}
-		return ans;
+// 		long  ans=1;
+// 		for(long i=1;i<=x;i++)
+// 		{
+// 		    if(i*i<=x)
+// 		    {
+// 		        ans=i;
+// 		    }
+// 		    else{
+// 		        break;
+// 		    }
+// 		}
+// 		return ans;
+//......................................................................
+
+  // O(log n)
+   
+   long low=1;
+   long high=x;
+   long ans=0;
+   long mid=low+(high-low)/2;
+   while(low<=high)
+   {
+       if(mid*mid<=x)
+       {
+           ans=mid;
+           low=mid+1;
+           
+       }
+       else{
+           high=mid-1;
+       }
+       mid=low+(high-low)/2;
+   }
+   return ans;
 		
 	 }
 }
