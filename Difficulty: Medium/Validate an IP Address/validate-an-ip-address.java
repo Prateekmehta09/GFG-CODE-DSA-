@@ -33,7 +33,7 @@ class Solution {
 
     public boolean isValid(String str) {
         // Write your code here
-         if(str.charAt(0)=='0')return false;
+          if(str.charAt(0)=='0')return false;
         String[] array = str.split("\\.");
         if(array.length!=4)return false;
         // for(int i=0;i<array.length-1;i++){
@@ -41,6 +41,7 @@ class Solution {
         // }
         for(String st : array) 
         {
+           
            
                
                if(st.isEmpty())return false;
