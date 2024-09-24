@@ -45,31 +45,49 @@ class Array {
 
 class Solution {
     // Function for finding maximum and value pair
-    public static int lenOfLongSubarr(int A[], int N, int K) 
-    {
+    public static int lenOfLongSubarr(int A[], int N, int K) {
         // Complete the function
-        HashMap <Integer,Integer> mp=new HashMap<>();
-        int sum=0;
-        int mxlen=0;
+        HashMap<Integer,Integer> ap=new HashMap<>();
         
-        for(int i=0;i<N ;i++)
+        int sum=0;
+        int mx=0;
+        for(int i=0;i<N;i++)
         {
             sum+=A[i];
             if(sum==K)
             {
-                mxlen=Math.max(mxlen,i+1);
+                mx=Math.max(mx,i+1);
             }
-            if(mp.containsKey(sum-K))
+            if(ap.containsKey(sum-K))
             {
-                mxlen=Math.max(mxlen,i-mp.get(sum-K));
+                mx=Math.max(mx,i-ap.get(sum-K));
             }
-            if(!mp.containsKey(sum))
+            if(!ap.containsKey(sum))
             {
-                mp.put(sum,i);
+                ap.put(sum,i);
             }
-            
         }
-        
-        return mxlen;
+        return mx;
     }
 }
+
+
+// HashMap<Integer,Integer> mp=new HashMap<>();
+      
+        // int summation=0;
+        // int mx=0;
+        // for(int i=0;i<N;i++)
+        // {
+        //     summation+=A[i];
+        //   if(summation==K)
+        //   {
+        //       mx=Math.max(mx, i+1);
+        //   }
+        //   if(mp.containsKey(summation-K))
+        //   {
+        //       mx=Math.max(mx, i-mp.get(summation-K));
+        //   }
+        //   if(!mp.containsKey(summation))
+        //   mp.put(summation,i);
+        // }
+        // return mx;
