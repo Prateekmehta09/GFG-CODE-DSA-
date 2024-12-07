@@ -1,89 +1,66 @@
 //{ Driver Code Starts
-// Initial Template for Java
-
 import java.io.*;
-import java.lang.*;
 import java.util.*;
 
 class Sorting {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        long t = sc.nextLong();
-
-        while (t-- > 0) {
-            long n = sc.nextLong();
-            long arr[] = new long[(int)n];
-
-            for (long i = 0; i < n; i++) arr[(int)i] = sc.nextLong();
-
-            System.out.println(new Solution().inversionCount(arr, (int)n));
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        for (int g = 0; g < t; g++) {
+            String[] str = (br.readLine()).trim().split(" ");
+            int arr[] = new int[str.length];
+            for (int i = 0; i < str.length; i++) arr[i] = Integer.parseInt(str[i]);
+            System.out.println(new Solution().inversionCount(arr));
+            System.out.println("~");
         }
     }
 }
-
 // } Driver Code Ends
 
 
 // User function Template for Java
 
 class Solution {
-    // arr[]: Input Array
-    // N : Size of the Array arr[]
     // Function to count inversions in the array.
-    static long inversionCount(long arr[], int n) {
+    static int inversionCount(int arr[]) {
         // Your Code Here
-        return divide(arr,0,n-1);
+          return mergeSort(arr,0,arr.length-1);
     }
-    public static long divide(long arr[],int s,int e){
-        long count=0;
-        if(s<e)
-        {
-            int mid=s+(e-s)/2;
-             count+=divide(arr,s,mid);
-             count+=divide(arr,mid+1,e);
-             count+=merge(arr,s,mid,e);
-            
+      private static int mergeSort(int[] arr,int left,int right){
+        int count=0;
+        if(left<right){
+            int mid=left+(right-left)/2;
+            count+=mergeSort(arr,left,mid);
+            count+=mergeSort(arr,mid+1,right);
+            count+=merge(arr,mid,left,right);
         }
         return count;
     }
-    public static long merge(long arr[],int s,int mid,int e)
-    {
-        long[] merged=new long[e-s+1];
-        
-        int first=s;
-        int second=mid+1;
-         int x=0;
-         long count=0;
-         
-         while(first<=mid && second<=e)
-         {
-             if(arr[first]<=arr[second])
-             {
-                 merged[x++]=arr[first++];
-             }
-             else{
-                 merged[x++]=arr[second++];
-                 count+=(mid-first+1);
-             }
-         }
-              while (first <= mid) {
-
-            merged[x++] = arr[first++];
-
+    private static int merge(int[] arr,int mid,int left,int right){
+        int l=left,r=mid+1;
+        int count=0;
+        ArrayList<Integer> temp=new ArrayList<>();
+        while(l<=mid && r<=right){
+            if(arr[l]<=arr[r]){
+                temp.add(arr[l]);
+                l++;
+            }else{
+                count+=(mid-l+1);
+                temp.add(arr[r]);
+                r++;
+            }
         }
-
-        while (second <= e) {
-
-            merged[x++] = arr[second++];
-
+        while(l<=mid){
+            temp.add(arr[l]);
+            l++;
         }
-
-        for (int i = 0, j = s; i < merged.length; i++, j++) {
-
-            arr[j] = merged[i];
-
+        while(r<=right){
+            temp.add(arr[r]);
+            r++;
+        }
+        for(int i=left;i<=right;i++){
+            arr[i]=temp.get(i-left);
         }
         return count;
-
     }
-   }
+}   
