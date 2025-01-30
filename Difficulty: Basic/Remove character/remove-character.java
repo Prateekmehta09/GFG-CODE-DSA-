@@ -29,7 +29,7 @@ class Solution{
         String s="";
         for(char c: string1.toCharArray())
         {
-            if(!(string2.indexOf(c)>=0))
+            if(!(string2.indexOf(c)>-1))
             {
                 s+=c;
             }
