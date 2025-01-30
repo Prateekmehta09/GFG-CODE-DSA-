@@ -34,23 +34,38 @@ class Solution {
     // Function to find the first non-repeating character in a string.
     static char nonRepeatingChar(String s) {
         // Your code here
-        int[] arr=new int[26];
+        // int[] arr=new int[26];
         
-        for(int i=0;i<s.length();i++)
-        {
-            int ch=s.charAt(i)-'a';
+        // for(int i=0;i<s.length();i++)
+        // {
+        //     int ch=s.charAt(i)-'a';
             
-            arr[ch]++;
-        }
+        //     arr[ch]++;
+        // }
         
-        for(int i=0;i<s.length();i++)
-        {
+        // for(int i=0;i<s.length();i++)
+        // {
             
-            int ch = s.charAt(i) - 'a';
-            if (arr[ch] == 1) {
-                return s.charAt(i);
-            }
-        }
+        //     int ch = s.charAt(i) - 'a';
+        //     if (arr[ch] == 1) {
+        //         return s.charAt(i);
+        //     }
+        // }
+        // return '$';
+         boolean flag=true;
+       for(char c:s.toCharArray())
+{
+             // if index from starting is same as index at ending return character.
+           if(s.indexOf(c)==s.lastIndexOf(c)){
+               return c;
+           }
+       }
+       
         return '$';
-    }
+        
+    
+        
+        
+    
+}
 }
