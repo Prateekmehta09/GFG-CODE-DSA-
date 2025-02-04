@@ -1,39 +1,52 @@
 //{ Driver Code Starts
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-class GFG {
-    public static void main(String[] args) {
+// Initial Template for Java
 
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while (t > 0) {
-            String s = sc.next();
-            Solution obj = new Solution();
-            System.out.println(obj.reverseWords(s));
-            t--;
+
+        int t = sc.nextInt(); // Read the number of test cases
+        sc.nextLine();        // Consume the newline character after reading the integer
+
+        while (t-- > 0) {
+            String s = sc.nextLine(); // Read the input string
+
+            // Remove surrounding quotes from the string
+            String str = s.substring(1, s.length() - 1);
+
+            Solution obj = new Solution(); // Create an object of the Solution class
+            String ans = obj.reverseWords(str); // Reverse the words in the string
+
+            // Print the result with surrounding quotes
+            System.out.println("\"" + ans + "\"");
         }
+        sc.close();
     }
 }
 
 // } Driver Code Ends
 
 
+class Solution {
+    // Function to reverse words in a given string
+    public String reverseWords(String s) {
+        // Code here
+        String[] word = s.trim().split("\\s+");
+        StringBuilder ans = new StringBuilder();
 
-class Solution 
-{
-    //Function to reverse words in a given string.
-    String reverseWords(String S)
-    {
-        // code here 
-        String[] ans=S.split("\\.");
-        String temp="";
-        for(int i=ans.length-1;i>=0;i--)
+        for (int i = word.length - 1; i >= 0; i--)
         {
-            
-            temp+="."+ans[i];
+            ans.append(word[i]);
+            if (i != 0) 
+            { 
+                
+                ans.append(" ");
+            }
         }
-        return temp.substring(1);
-    }
-    
+        return ans.toString();
+        }
 }
